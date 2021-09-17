@@ -18,15 +18,16 @@ class RouteModel : public Model {
         float h_value {std::numeric_limits<float>::max()};
         float g_value {0.0};
         bool visited {false};
-        std::vector<Node*> neighbors;
+        std::vector<const Node*> neighbors;
 
         float distance(const RouteModel::Node& otherNode) const;
-        
+        void FindNeighbors();
       
       private:
         // Add private Node variables and methods here.
         int index;
         RouteModel * parent_model = nullptr;
+        RouteModel::Node const *  FindNeighbor(std::vector<int> node_indeces) const;
     };
     
     // Add public RouteModel variables and methods here.
@@ -40,6 +41,7 @@ class RouteModel : public Model {
     {
       return node_to_road;
     }
+    RouteModel::Node FindClosestNode(float x, float y);
 
 
 
